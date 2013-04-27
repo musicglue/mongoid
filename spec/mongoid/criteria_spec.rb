@@ -5079,7 +5079,7 @@ describe Mongoid::Criteria do
     end
 
     after do
-      Band.persistence_options.clear
+#      Band.persistence_options.clear
     end
 
     it "retains the criteria selection" do
@@ -5087,7 +5087,7 @@ describe Mongoid::Criteria do
     end
 
     it "sets the persistence options" do
-      Band.persistence_options.should eq(collection: "artists")
+      criteria.persistence_options.should eq(collection: "artists")
     end
   end
 

@@ -131,6 +131,7 @@ module Mongoid
     def previous_revision
       _loading_revision do
         self.class.unscoped.
+          with(persistence_options).
           where(_id: id).
           any_of({ version: version }, { version: nil }).first
       end

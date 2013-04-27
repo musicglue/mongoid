@@ -2,35 +2,6 @@ require "spec_helper"
 
 describe Mongoid::Sessions do
 
-  describe ".clear_persistence_options" do
-
-    context "when options exist on the current thread" do
-
-      before do
-        Band.with(safe: true)
-      end
-
-      let!(:cleared) do
-        Band.clear_persistence_options
-      end
-
-      it "remove the options from the current thread" do
-        Band.persistence_options.should be_nil
-      end
-
-      it "returns true" do
-        cleared.should be_true
-      end
-    end
-
-    context "when options do not exist on the current thread" do
-
-      it "returns true" do
-        Band.clear_persistence_options.should be_true
-      end
-    end
-  end
-
   describe "#collection" do
 
     context "when overriding the default with store_in" do
@@ -511,7 +482,7 @@ describe Mongoid::Sessions do
       end
 
       after do
-        Band.clear_persistence_options
+#        Band.clear_persistence_options
       end
 
       it "returns the options" do

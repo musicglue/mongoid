@@ -5,6 +5,8 @@ require "mongoid/criterion/marshalable"
 require "mongoid/criterion/modifiable"
 require "mongoid/criterion/scoping"
 
+require "mongoid/sessions/options"
+
 module Mongoid
 
   # The +Criteria+ class is the core object needed in Mongoid to retrieve
@@ -405,10 +407,11 @@ module Mongoid
     # @return [ Criteria ] The criteria.
     #
     # @since 3.0.0
-    def with(options)
-      Threaded.set_persistence_options(klass, options)
-      self
-    end
+#    def with(options)
+#      Threaded.set_persistence_options(klass, options)
+#      self
+#    end
+    include Sessions::Options
 
     # Get a version of this criteria without the options.
     #

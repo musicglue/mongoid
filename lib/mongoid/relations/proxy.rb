@@ -103,7 +103,7 @@ module Mongoid
       #
       # @since 3.0.0
       def with(options)
-        Threaded.set_persistence_options(klass, options)
+        @persistence_options = options
         self
       end
 
@@ -119,6 +119,7 @@ module Mongoid
       # @since 2.0.0
       def collection
         root = base._root
+        root.with(@persistence_options)
         root.collection unless root.embedded?
       end
 

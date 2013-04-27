@@ -243,6 +243,7 @@ module Mongoid
             attributes.map { |attrs| create(attrs, options, &block) }
           else
             doc = new(attributes, options, &block)
+            doc.with(persistence_options)
             doc.save
             doc
           end
@@ -274,6 +275,7 @@ module Mongoid
             attributes.map { |attrs| create!(attrs, options, &block) }
           else
             doc = new(attributes, options, &block)
+            doc.with(persistence_options)
             fail_validate!(doc) unless doc.insert.errors.empty?
             fail_callback!(doc, :create!) if doc.new_record?
             doc
